@@ -126,11 +126,13 @@ class KakaoShareLinkModule(private val reactContext: ReactApplicationContext) : 
 
       // 1. CustomTabs으로 Chrome 브라우저 열기
       try {
-       KakaoCustomTabsClient.openWithDefault(reactContext, sharerUrl)
+      //  KakaoCustomTabsClient.openWithDefault(reactContext, sharerUrl)
+       promise.reject("E_KAKAO_NO_BROWSER")
       } catch (e: UnsupportedOperationException) {
         // 2. CustomTabs으로 디바이스 기본 브라우저 열기
         try {
-          KakaoCustomTabsClient.open(reactContext, sharerUrl)
+          // KakaoCustomTabsClient.open(reactContext, sharerUrl)
+          promise.reject("E_KAKAO_NO_BROWSER", e.message, e)
         } catch (e: ActivityNotFoundException) {
         // 인터넷 브라우저가 없을 때 예외처리
           promise.reject("E_KAKAO_NO_BROWSER", e.message, e)
@@ -231,11 +233,13 @@ class KakaoShareLinkModule(private val reactContext: ReactApplicationContext) : 
 
       // 1. CustomTabs으로 Chrome 브라우저 열기
       try {
-        KakaoCustomTabsClient.openWithDefault(reactContext, sharerUrl)
+        // KakaoCustomTabsClient.openWithDefault(reactContext, sharerUrl)
+        promise.reject("E_KAKAO_NO_BROWSER")
       } catch (e: UnsupportedOperationException) {
         // 2. CustomTabs으로 디바이스 기본 브라우저 열기
         try {
-          KakaoCustomTabsClient.open(reactContext, sharerUrl)
+          // KakaoCustomTabsClient.open(reactContext, sharerUrl)
+          promise.reject("E_KAKAO_NO_BROWSER", e.message, e)
         } catch (e: ActivityNotFoundException) {
           // 인터넷 브라우저가 없을 때 예외처리
           promise.reject("E_KAKAO_NO_BROWSER", e.message, e)
